@@ -59,14 +59,14 @@ class HttpService {
       final response = await http
           .post(
             url,
-            headers: requiresHeaders
-                ? (headers ?? {'Content-Type': 'application/json'})
-                : null,
+            headers: headers ?? {'Content-Type': 'application/json'},
             body: json.encode(body),
           )
           .timeout(const Duration(seconds: 20)); // 设置超时时间
 
       if (kDebugMode) {
+        print("body:$body");
+        print("headers:$headers");
         print("POST $baseUrl$endpoint response: ${response.body}");
       }
       if (response.statusCode == 200) {
